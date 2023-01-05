@@ -565,6 +565,7 @@ class CParser(PLYParser):
         else:
             p[0] = [c_ast.StaticAssert(p[3], p[5], self._token_coord(p, 1))]
 
+
     def p_pp_directive(self, p):
         """ pp_directive  : PPHASH
         """
@@ -574,8 +575,11 @@ class CParser(PLYParser):
     def p_pppragma_directive(self, p):
         """ pppragma_directive      : PPPRAGMA
                                     | PPPRAGMA PPPRAGMASTR
+                                    | _PRAGMA LPAREN unified_string_literal RPAREN
         """
-        if len(p) == 3:
+        if len(p) == 5:
+            p[0] = c_ast.Pragma(p[3], self._token_coord(p, 2))
+        elif len(p) == 3:
             p[0] = c_ast.Pragma(p[2], self._token_coord(p, 2))
         else:
             p[0] = c_ast.Pragma("", self._token_coord(p, 1))

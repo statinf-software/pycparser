@@ -111,21 +111,18 @@ class CLexer(object):
         '__INLINE', '__VOLATILE', '__RESTRICT',
         'CREGISTER', '__CREGISTER',
         '__INTERRUPT', 'INTERRUPT',
-        'REENTRANT', 'TRAP'
+        'REENTRANT', 'TRAP',
     )
 
     keywords_new = (
         '_BOOL', '_COMPLEX',
         '_NORETURN', '_THREAD_LOCAL', '_STATIC_ASSERT',
         '_ATOMIC', '_ALIGNOF', '_ALIGNAS',
+        '_PRAGMA', # Statinf addition
         )
-    keywords_new_extension_ti = (
-        '_PRAGMA',
-    )
 
     # TODO: parametrize TI language extensions
     keywords += keywords_extension_ti
-    keywords_new += keywords_new_extension_ti
 
     keyword_map = {}
 
