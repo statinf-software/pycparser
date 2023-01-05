@@ -849,8 +849,10 @@ class CParser(PLYParser):
         """
         p[0] = p[1]
 
+    # Includes TI extensions
     def p_function_specifier(self, p):
         """ function_specifier  : INLINE
+                                | __INLINE
                                 | _NORETURN
         """
         p[0] = p[1]
@@ -888,11 +890,20 @@ class CParser(PLYParser):
         typ.quals.append('_Atomic')
         p[0] = typ
 
+    # Includes TI extensions
     def p_type_qualifier(self, p):
         """ type_qualifier  : CONST
                             | RESTRICT
+                            | __RESTRICT
                             | VOLATILE
+                            | __VOLATILE
                             | _ATOMIC
+                            | CREGISTER
+                            | __CREGISTER
+                            | INTERRUPT
+                            | __INTERRUPT
+                            | REENTRANT
+                            | TRAP
         """
         p[0] = p[1]
 
